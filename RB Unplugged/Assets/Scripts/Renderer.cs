@@ -6,7 +6,7 @@ public class Renderer : MonoBehaviour
 {
     void Start()
     {
-        GetComponent<MeshRenderer>().enabled = true;
+        //GetComponent<MeshRenderer>().enabled = true;
     }
 
     void OnTriggerEnter(Collider other)

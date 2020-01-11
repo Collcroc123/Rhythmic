@@ -17,15 +17,20 @@ public class notePlacer : MonoBehaviour
     AudioSource music; //plays the music
     string songName; //used to access song file
 
+    public NoteMove noteMove;
+
     int nextNote = 0; //starts at 0
     int nextFret = 0; //starts at 0
 
     void Start()
 	{
+        //GameObject moving = GameObject.Find("Moving");
+        noteMove = GetComponent<Note Move>(); //WHAT?!?! <--------
         //LoadData();
-        StartCoroutine(WaitSong());
-        music = GetComponent<AudioSource>();
         songName = "Wonderwall";
+        music = GetComponent<AudioSource>();
+        music.Pause();
+        StartCoroutine(WaitSong());
 	}
 
 	void Update()
@@ -36,7 +41,7 @@ public class notePlacer : MonoBehaviour
     void NotePlace()
 	{
         //Debug.Log("WHERE???");
-        string[] lines = System.IO.File.ReadAllLines(@"./Assets/Songs/Wonderwall/song.txt");
+        string[] lines = System.IO.File.ReadAllLines(@"./Assets/Songs/"+songName+"/song.txt");
 		foreach (string line in lines)
 		{
             Instantiate(fret, new Vector3(0, -0.21f, nextFret - 0.35f), Quaternion.identity);
@@ -88,7 +93,8 @@ public class notePlacer : MonoBehaviour
     private IEnumerator WaitSong()
     {
         yield return new WaitForSeconds(5.0f);
+        noteMove.currentBPS = noteMove.songBPM / 60.0f;
         NotePlace();
-        music.Play();
+        music.UnPause();
     }
 }

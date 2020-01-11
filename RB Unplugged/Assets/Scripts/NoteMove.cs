@@ -16,7 +16,8 @@ public class NoteMove : MonoBehaviour
     void Start()
     {
         songBPM = wonderWall;
-        currentBPS = songBPM / 60.0f;
+        currentBPS = 0.0f;
+        //currentBPS = songBPM / 60.0f;
     }
 
     void FixedUpdate()
@@ -25,6 +26,7 @@ public class NoteMove : MonoBehaviour
         speedInt = (currentBPS * 8.0f) * Time.deltaTime;
         speed.text = speedInt.ToString();
         //if notes moving, - before (currentBPS)
+        //to make notes fade on screen instead of pop in, take currentBPS * 8.0f, and make the main board spawn that far back from the notes.
     }
     //coroutine - do this work, wait for seconds. While loop
 }
