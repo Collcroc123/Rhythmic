@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class NoteMove : MonoBehaviour
 {
-    float currentBPS = 0.0f;
-    float songBPM = 0.0f;
+    public float currentBPS = 0.0f;
+    public float songBPM = 0.0f;
     float wonderWall = 88.0f;
     float smoothCriminal = 126.0f;
     float trustInYou = 170.0f;

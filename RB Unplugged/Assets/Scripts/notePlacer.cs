@@ -25,7 +25,7 @@ public class notePlacer : MonoBehaviour
     void Start()
 	{
         //GameObject moving = GameObject.Find("Moving");
-        noteMove = GetComponent<Note Move>(); //WHAT?!?! <--------
+        //noteMove = GetComponent<Note Move>(); //WHAT?!?! <--------
         //LoadData();
         songName = "Wonderwall";
         music = GetComponent<AudioSource>();
