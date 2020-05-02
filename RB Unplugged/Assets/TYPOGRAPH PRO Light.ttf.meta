@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: dc623c6995f1c034599e822c001ff248
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: TYPOGRAPH PRO
+  fontNames:
+  - TYPOGRAPH PRO
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 44fc0a1baaba07348b6f4a2528c7886b, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
