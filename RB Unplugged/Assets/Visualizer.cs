@@ -18,7 +18,7 @@ public class Visualizer : MonoBehaviour
     public AudioClip audioClip;
     public bool loop = true;
     [Space (15), Range(64, 8192)]
-    public int visualizerSimples = 64;
+    public int visualizerSamples = 64;
     [Range(0.0f, 1.0f)]
     public float songVolume = 1.0f;
 
@@ -28,10 +28,7 @@ public class Visualizer : MonoBehaviour
     void Start()
     {
         visualizerObjects = GetComponentsInChildren<VisualizerObjectScript>();
-        if(!audioClip)
-        {
-            return;
-        }
+        if(!audioClip){return;}
         m_audioSource = new GameObject ("AudioSource").AddComponent<AudioSource>();
         m_audioSource.loop = loop;
         m_audioSource.clip = audioClip;
@@ -40,7 +37,7 @@ public class Visualizer : MonoBehaviour
 
     void Update()
     {
-        float[] spectrumData = m_audioSource.GetSpectrumData(visualizerSimples, 0, FFTWindow.BlackmanHarris);
+        float[] spectrumData = m_audioSource.GetSpectrumData(visualizerSamples, 0, FFTWindow.BlackmanHarris);
         for (int i = 0; i < visualizerObjects.Length; i++)
         {
             Vector2 newSize = visualizerObjects[i].GetComponent<RectTransform>().rect.size;

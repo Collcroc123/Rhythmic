@@ -2128,9 +2128,9 @@ MonoBehaviour:
   visualizerColor: {r: 0.8396226, g: 0.4000089, b: 0.4000089, a: 1}
   artistText: {fileID: 539065745}
   songText: {fileID: 2084289260}
-  audioClip: {fileID: 8300000, guid: 149fd27271de6714a8bb89365033071f, type: 3}
+  audioClip: {fileID: 8300000, guid: f57bc8a6eb313d945b511dd7ba354d24, type: 3}
   loop: 1
-  visualizerSimples: 64
+  visualizerSamples: 64
   songVolume: 1
 --- !u!1 &682658581 stripped
 GameObject:
