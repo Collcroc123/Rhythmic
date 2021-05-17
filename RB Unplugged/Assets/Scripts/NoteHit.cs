@@ -1,29 +1,20 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class NoteHit : MonoBehaviour
 {
-	public Manager manager;
-	private IEnumerator coroutine;
-    private IEnumerator noteKill;
-    //public string key;
-    public string button;
-    public Material transparent;
-    public Material white;
-    public MeshRenderer mesh;
-    public Slider health;
-    public GameObject death;
-    private GameObject currentNote;
+	public Manager manager; //Manager script
+	public string button; //What key to press
+    public Material white; //Pure white material for anim
+    public Material transparent; //Transparent color material for anim
+    public MeshRenderer mesh; //Mesh renderer for anim
+    public Slider health; //Health bar
+    public GameObject death; //Death screen
+    private GameObject currentNote; //Currently selected note
     private GameObject missedNote;
 
-	void Start ()
-    {
-
-    }
-	
-	void Update ()
+    void Update ()
     {
         if (currentNote != null)
         {
@@ -32,8 +23,7 @@ public class NoteHit : MonoBehaviour
 				if (Input.GetButtonDown(button))
 				{
 					Destroy(currentNote);
-					coroutine = waitNote();
-					StartCoroutine(coroutine);
+					StartCoroutine(noteAnim());
 					//Debug.Log(key + " HIT");
 					manager.totalHits++;
 					manager.combo++;
@@ -50,8 +40,7 @@ public class NoteHit : MonoBehaviour
         {
             if (Input.GetButtonDown(button))
             {
-                coroutine = waitNote();
-                StartCoroutine(coroutine);
+	            StartCoroutine(noteAnim());
                 //Debug.Log(key + " MISSCLICK");
                 manager.totalMisses++;
                 manager.combo = 0;
@@ -66,7 +55,7 @@ public class NoteHit : MonoBehaviour
         }
     }
 
-	private IEnumerator waitNote()
+	private IEnumerator noteAnim() //flashes color when note pressed
 	{
 			mesh.material = white;
 			yield return new WaitForSeconds(0.1f);
@@ -89,7 +78,7 @@ public class NoteHit : MonoBehaviour
             missedNote = other.gameObject;
             //Debug.Log(key + " MISS");
             manager.totalMisses++;
-            //manager.combo = 0;
+            manager.combo = 0;
             health.value -= 5.0f;
         }
         Destroy(other.gameObject, 0.2f);

@@ -5,9 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - NOTE
-  - FRET
   - LONGNOTE
-  - DOUBLE
   layers:
   - Default
   - TransparentFX

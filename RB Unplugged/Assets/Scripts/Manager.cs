@@ -1,23 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class Manager : MonoBehaviour
 {
-    public Text hitCount; //How many notes you hit, UI
-    public Text missCount; //How many notes you missed, UI
-    public Text score; //Score, UI
-    public Text multX; //Multiplier, UI
-    public Text combText; //Combo, UI
+    public Text hitCount; //Displays number of hit notes, UI
+    public Text missCount; //Displays number of missed notes, UI
+    public Text score; //Displays score, UI
+    public Text multX; //Displays multiplier, UI
+    public Text combText; //Displays combo/streak, UI
+    public Slider multiplier; //Displays multiplier bar, UI
     public int multInt = 1; //1-5 or 2-12, int
     public int totalHits; //Number of hit notes, int
     public int totalMisses; //Number of missed notes, int
     public int totalScore; //Total score, int
-    public Slider multiplier; //Multiplier Bar, UI
-    public int combo = 0; //How many notes without fail, int
+    public int combo = 0; //Number of notes without fail, int
     public int sliderVal = 0; //Multiplier Bar's INT, int
-    public int points = 500; //How much each note is worth, int
+    public int points = 500; //How mamy points each note is worth, int
 
     void Start ()
     {
@@ -33,7 +31,7 @@ public class Manager : MonoBehaviour
         missCount.text = totalMisses.ToString();
         score.text = totalScore.ToString();
         combText.text = combo.ToString();
-
+        /*
         if (combo >= 40)
         {
             sliderVal = combo - 40;
@@ -64,17 +62,6 @@ public class Manager : MonoBehaviour
             points = 500;
             multInt = 1;
         }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "FRET")
-        {
-            Destroy(other.gameObject, 0.2f);
-        }
-        if (other.gameObject.tag == "DOUBLE")
-        {
-            Destroy(other.gameObject, 0.2f);
-        }
+        */
     }
 }

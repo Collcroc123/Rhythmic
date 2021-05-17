@@ -1,32 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class NoteMove : MonoBehaviour
 {
-    public float currentBPS = 0.0f;
-    public float songBPM = 0.0f;
-    float wonderWall = 88.0f;
-    float smoothCriminal = 126.0f;
-    float trustInYou = 170.0f;
-    public Text speed;
-    private float speedInt;
+    public float songBPM = 120f;
+    private float currentBPS = 0.0f;
+    //float wonderWall = 88.0f;
 
     void Start()
     {
-        songBPM = wonderWall;
-        currentBPS = 0.0f;
-        //currentBPS = songBPM / 60.0f;
+        currentBPS = songBPM / 60.0f;
+        currentBPS *= 4f;
     }
 
     void FixedUpdate()
     {
-        transform.position += new Vector3(0, 0, (currentBPS * 8.0f) * Time.deltaTime); //32 meters off!!!! (4 whole beats)
-        speedInt = (currentBPS * 8.0f) * Time.deltaTime;
-        speed.text = speedInt.ToString();
-        //if notes moving, - before (currentBPS)
-        //to make notes fade on screen instead of pop in, take currentBPS * 8.0f, and make the main board spawn that far back from the notes.
+        transform.position -= new Vector3(0f, 0f, currentBPS * Time.deltaTime);
     }
-    //coroutine - do this work, wait for seconds. While loop
 }
