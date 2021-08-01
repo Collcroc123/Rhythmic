@@ -6,6 +6,7 @@ TagManager:
   tags:
   - NOTE
   - LONGNOTE
+  - Manager
   layers:
   - Default
   - TransparentFX

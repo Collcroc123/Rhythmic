@@ -6,6 +6,24 @@
     <e p="C:\Users\colli\Documents\Repos\Rockband\RB Unplugged" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="ArrayData.cs" t="Include" />
+        <e p="DeleteNote.cs" t="Include" />
+        <e p="IntData.cs" t="Include" />
+        <e p="NewGame" t="Include">
+          <e p="ScanSongs.cs" t="Include" />
+          <e p="Scripts" t="Include">
+            <e p="MusicImport.cs" t="Include" />
+            <e p="NewManager.cs" t="Include" />
+            <e p="NewMenu.cs" t="Include" />
+            <e p="NewNoteHit.cs" t="Include" />
+            <e p="NewNoteMove.cs" t="Include" />
+            <e p="NewNotePlacer.cs" t="Include" />
+            <e p="NewRenderer.cs" t="Include" />
+            <e p="ScrollList.cs" t="Include" />
+            <e p="SongInformation.cs" t="Include" />
+            <e p="SongPlayer.cs" t="Include" />
+          </e>
+        </e>
         <e p="Scripts" t="Include">
           <e p="Manager.cs" t="Include" />
           <e p="Menu.cs" t="Include" />
@@ -16,6 +34,8 @@
           <e p="Visualizer.cs" t="Include" />
           <e p="VisualizerObjectScript.cs" t="Include" />
         </e>
+        <e p="SelectSong.cs" t="Include" />
+        <e p="SongData.cs" t="Include" />
         <e p="Songs" t="Include">
           <e p="Kids Arent Alright" t="Include">
             <e p="song.txt" t="Include" />
@@ -30,6 +50,7 @@
             <e p="song.txt" t="Include" />
           </e>
         </e>
+        <e p="StringData.cs" t="Include" />
       </e>
       <e p="obj" t="ExcludeRecursive" />
       <e p="Packages" t="ExcludeRecursive" />

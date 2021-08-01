@@ -19,7 +19,19 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e6ddb34-7398-45cd-9e12-185e20dc8ae2" name="Default Changelist" comment="" />
+    <list default="true" id="9e6ddb34-7398-45cd-9e12-185e20dc8ae2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.RB Unplugged/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RB Unplugged/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.RB Unplugged/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RB Unplugged/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Play.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Play.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/ApiUpdaterCheck.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/ApiUpdaterCheck.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker0-prev.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker0-prev.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker0.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp.csprojAssemblyReference.cache" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,6 +39,18 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/../../ArcadeMachine/Arcade Project/Assets/SongPlayer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../ArcadeMachine/Arcade Project/Assets/SongEntry.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../ArcadeMachine/Arcade Project/Assets/ScrollList.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/NewGame/Scripts/SongInformation.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/NewGame/ScanSongs.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../ArcadeMachine/Arcade Project/Assets/MusicImport.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/SongData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/DeleteNote.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../ArcadeMachine/Arcade Project/Assets/MenuiNavi.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/SelectSong.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -36,6 +60,27 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/NoteMove.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/NoteHit.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Renderer.cs" />
+        <option value="$PROJECT_DIR$/Assets/NewGame/NewNotePlacer.cs" />
+        <option value="$PROJECT_DIR$/Assets/NewGame/NewManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/NewGame/NewMenu.cs" />
+        <option value="$PROJECT_DIR$/Assets/NewGame/NewNoteHit.cs" />
+        <option value="$PROJECT_DIR$/Assets/NewGame/NewNoteMove.cs" />
+        <option value="$PROJECT_DIR$/Assets/NewGame/NewRenderer.cs" />
+        <option value="$PROJECT_DIR$/Assets/NewGame/Scripts/NewRenderer.cs" />
+        <option value="$PROJECT_DIR$/Assets/NewGame/Scripts/NewManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/DeleteNote.cs" />
+        <option value="$PROJECT_DIR$/Assets/NewGame/Scripts/ScrollList.cs" />
+        <option value="$PROJECT_DIR$/Assets/NewGame/Scripts/SceneSwitch.cs" />
+        <option value="$PROJECT_DIR$/Assets/ArrayData.cs" />
+        <option value="$PROJECT_DIR$/Assets/NewGame/Scripts/MusicImport.cs" />
+        <option value="$PROJECT_DIR$/Assets/SelectSong.cs" />
+        <option value="$PROJECT_DIR$/Assets/NewGame/ScanSongs.cs" />
+        <option value="$PROJECT_DIR$/Assets/SongData.cs" />
+        <option value="$PROJECT_DIR$/Assets/NewGame/Scripts/SongPlayer.cs" />
+        <option value="$PROJECT_DIR$/Assets/NewGame/Scripts/SongInformation.cs" />
+        <option value="$PROJECT_DIR$/Assets/NewGame/Scripts/NewNoteHit.cs" />
+        <option value="$PROJECT_DIR$/Assets/NewGame/Scripts/NewNotePlacer.cs" />
+        <option value="$PROJECT_DIR$/Assets/NewGame/Scripts/NewNoteMove.cs" />
       </list>
     </option>
   </component>
@@ -46,6 +91,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="Discover.Launch.Via.Unity" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -79,6 +125,11 @@
       <option name="presentableId" value="Default" />
       <updated>1619647733617</updated>
       <workItem from="1619647752202" duration="9202000" />
+      <workItem from="1623031571192" duration="1829000" />
+      <workItem from="1623033902145" duration="60476000" />
+      <workItem from="1623259652629" duration="2975000" />
+      <workItem from="1623292814475" duration="10473000" />
+      <workItem from="1623648475729" duration="39609000" />
     </task>
     <servers />
   </component>
@@ -97,8 +148,19 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="616" y="240" key="run.anything.popup" timestamp="1623717218982">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1623717218982" />
+    <state x="616" y="173" width="672" height="676" key="search.everywhere.popup" timestamp="1623311602020">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="173" width="672" height="676" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1623311602020" />
   </component>
 </project>
