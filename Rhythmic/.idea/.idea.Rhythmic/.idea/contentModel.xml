@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\colli\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\colli\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_Rhythmic.751132069.00" t="ExcludeRecursive" />
+    <e p="C:\Users\colli\Documents\Repos\Rockband\Rhythmic" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Datas" t="Include">
+          <e p="ArrayData.cs" t="Include" />
+          <e p="IntData.cs" t="Include" />
+          <e p="SongData.cs" t="Include" />
+          <e p="StringData.cs" t="Include" />
+        </e>
+        <e p="Resources" t="Include">
+          <e p="BillingMode.json" t="Include" />
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="DeleteNote.cs" t="Include" />
+          <e p="MusicImport.cs" t="Include" />
+          <e p="NewManager.cs" t="Include" />
+          <e p="NewMenu.cs" t="Include" />
+          <e p="NewNoteHit.cs" t="Include" />
+          <e p="NewNoteMove.cs" t="Include" />
+          <e p="NewNotePlacer.cs" t="Include" />
+          <e p="NewRenderer.cs" t="Include" />
+          <e p="OLD SCRIPTS" t="Include">
+            <e p="Manager.cs" t="Include" />
+            <e p="Menu.cs" t="Include" />
+            <e p="NoteHit.cs" t="Include" />
+            <e p="NoteMove.cs" t="Include" />
+            <e p="notePlacer.cs" t="Include" />
+            <e p="Renderer.cs" t="Include" />
+            <e p="Visualizer.cs" t="Include" />
+            <e p="VisualizerObjectScript.cs" t="Include" />
+          </e>
+          <e p="ScanSongs.cs" t="Include" />
+          <e p="ScrollList.cs" t="Include" />
+          <e p="SelectSong.cs" t="Include" />
+          <e p="SongInformation.cs" t="Include" />
+          <e p="SongPlayer.cs" t="Include" />
+        </e>
+      </e>
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Rhythmic.sln" t="IncludeFlat" />
+      <e p="Temp\Bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>

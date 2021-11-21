@@ -17,7 +17,7 @@ public class NewNoteMove : MonoBehaviour
         StartCoroutine(WaitMove());
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (ready)
         {

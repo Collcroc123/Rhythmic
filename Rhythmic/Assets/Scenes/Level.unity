@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -452,7 +452,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
+  m_BackGroundColor: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -525,7 +525,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 677004222}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 100, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1099196685}
@@ -667,7 +667,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manager: {fileID: 1099196690}
   button: d
-  autoPlay: 1
+  autoPlay: 0
   click: {fileID: 1612963563}
 --- !u!114 &700507226
 MonoBehaviour:
@@ -724,7 +724,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &708828155
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2112,7 +2112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manager: {fileID: 1099196690}
   button: k
-  autoPlay: 1
+  autoPlay: 0
   click: {fileID: 1612963563}
 --- !u!114 &1341447998
 MonoBehaviour:
@@ -2251,7 +2251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manager: {fileID: 1099196690}
   button: j
-  autoPlay: 1
+  autoPlay: 0
   click: {fileID: 1612963563}
 --- !u!114 &1370322915
 MonoBehaviour:
@@ -2608,7 +2608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manager: {fileID: 1099196690}
   button: f
-  autoPlay: 1
+  autoPlay: 0
   click: {fileID: 1612963563}
 --- !u!114 &1537802955
 MonoBehaviour:

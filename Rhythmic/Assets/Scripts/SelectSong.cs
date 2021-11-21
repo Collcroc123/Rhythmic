@@ -25,6 +25,6 @@ public class SelectSong : MonoBehaviour
         songNumber.value = button.GetComponent<SongInformation>().songNumber;
         fade.SetTrigger("FadeOut");
         yield return new WaitForSeconds(0.5f);
-        SceneManager.LoadScene("NewLevel");
+        SceneManager.LoadScene("Level");
     }
 }

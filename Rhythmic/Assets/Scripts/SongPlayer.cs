@@ -49,7 +49,7 @@ public class SongPlayer : MonoBehaviour
         //source.Play();
         //currentArtist.text = songDatas.songInfo[songNumber.value].artist;
         //currentSong.text = songDatas.songInfo[songNumber.value].title;
-        background.SetActive(true);
+        //background.SetActive(true);
     }
     
     private WWW GetAudioFromFile(string path)
