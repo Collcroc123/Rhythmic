@@ -13,7 +13,7 @@ public class MusicImport : MonoBehaviour
         //CreateList();
         //This script is junk ngl
     }
-
+    /*
     void CreateList()
     {
         songNum++;
@@ -21,7 +21,7 @@ public class MusicImport : MonoBehaviour
         newSong.transform.SetParent(gameObject.transform, false);
         newSong.GetComponent<SongInformation>().songNumber = songNum;
         listPos += -150;
-    }
+    }*/
 
     private void OnTriggerEnter2D(Collider2D other)
     {

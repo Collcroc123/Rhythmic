@@ -12,7 +12,6 @@ public class SongPlayer : MonoBehaviour
     //[HideInInspector]public Slider timeBar;
     [HideInInspector] public bool loopBool;
     [HideInInspector] public bool muteBool;
-    [HideInInspector] public ScrollList scroll;
     //[HideInInspector] public Text currentArtist;
     //[HideInInspector] public Text currentSong;
     //[HideInInspector] public Image currentBackground;
@@ -24,7 +23,7 @@ public class SongPlayer : MonoBehaviour
     {
         source = GameObject.Find("NoteBoard").GetComponent<AudioSource>();
         fade = GameObject.Find("FadePanel").GetComponent<Animator>();
-        location = songDatas.songInfo[songNumber.value].songAddress;
+        //location = songDatas.songInfo[songNumber.value].songAddress;
         print(location);
         StartCoroutine(LoadAudio());
         //background.SetActive(false);

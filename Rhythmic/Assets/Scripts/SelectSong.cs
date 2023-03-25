@@ -22,7 +22,7 @@ public class SelectSong : MonoBehaviour
 
     IEnumerator LoadGame()
     {
-        songNumber.value = button.GetComponent<SongInformation>().songNumber;
+        //songNumber.value = button.GetComponent<SongInformation>().songNumber;
         fade.SetTrigger("FadeOut");
         yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene("Level");

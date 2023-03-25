@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DeleteNote : MonoBehaviour
 {
-    public NewManager manager;
+    public Manager manager;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "NOTE")
