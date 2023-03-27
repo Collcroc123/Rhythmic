@@ -6,22 +6,22 @@ using TagLib.NonContainer;
 public class SongData : ScriptableObject
 {
     public string directory; // Folder path
-	public string fileName; // .sm file name
-	public string groupName; // Parent folder name
+	public string fileName; // .sm file
+	public string group; // Parent folder name
 	public string title; // Title displayed in menu
 	public string subtitle; // Subtitle displayed in menu
 	public string artist; // Artist displayed in menu
 	public string banner; // Song banner displayed in menu
 	public string background; // Song background displayed in game
-	//public string cdtitle; // Song icon displayed in menu
-	public string music;
+	public string cdtitle; // Song icon displayed in menu
+	public string music; // Song file name
 	public float offset;
 	public float sampleStart; // Plays portion when selected in menu
 	public float sampleLength; // How long menu selection plays
-	public string displayBPM; // BPM displayed in menu
+	public float displayBPM; // BPM displayed in menu
 	public List<float> bpms = new List<float>();
 	public List<float> stops = new List<float>();
-	public string songLength;
+	public string length; // How long the song is
 	public string rank;
 
     //public string titleTranslit;
