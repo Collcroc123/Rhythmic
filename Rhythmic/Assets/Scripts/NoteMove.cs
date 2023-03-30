@@ -9,8 +9,7 @@ public class NoteMove : MonoBehaviour
     private bool ready;
     public AudioSource source;
     private float speed = 10;
-    public ArrayData songDatas;
-    public IntData songNumber;
+    public SongData song;
 
     void Start()
     {
@@ -28,12 +27,11 @@ public class NoteMove : MonoBehaviour
     private IEnumerator WaitMove()
     {
         yield return new WaitForSeconds(1.0f);
-        //songBpm = songDatas.songInfo[songNumber.value].bpms;
         print(songBpm);
-        currentBps = songBpm / 60.0f;
+        currentBps = song.displayBPM / 60.0f;
         currentBps *= speed;
         source.Play();
-        yield return new WaitForSeconds(songDatas.songInfo[songNumber.value].offset);
+        yield return new WaitForSeconds(song.offset);
         ready = true;
     }
 

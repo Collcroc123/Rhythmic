@@ -11,8 +11,7 @@ public class NotePlacer : MonoBehaviour
     private float nextNote, nextRow, nextArrow; //Space Between Rows, Vertical Loc, Horizontal Loc
     private int currentMeasure, measureNum = 4; //Point in Measure Array, Number of Lines in Measure
     private bool placing;
-    public ArrayData songDatas;
-    public IntData songNumber;
+    public SongData song;
 
     void Start()
 	{
@@ -40,7 +39,7 @@ public class NotePlacer : MonoBehaviour
 
     void NotePlace()
 	{
-        string[] lines = System.IO.File.ReadAllLines(songDatas.songInfo[songNumber.value].fileName);
+        string[] lines = System.IO.File.ReadAllLines(song.fileName);
         foreach (string line in lines)
 		{
 			if (line.Contains("#NOTES:") && !placing)
@@ -93,7 +92,7 @@ public class NotePlacer : MonoBehaviour
 				else if (line == ",")
 				{
 					currentMeasure++;
-					measureNum = songDatas.songInfo[songNumber.value].expertMap[currentMeasure];
+					measureNum = song.expertMap[currentMeasure];
 					print(measureNum);
 					//A = B/C, B = measureNum * distance moved for 1 full note
 					nextNote = 1500f/measureNum;
@@ -109,7 +108,7 @@ public class NotePlacer : MonoBehaviour
     private IEnumerator WaitSong()
     {
 	    yield return new WaitForSeconds(1.0f);
-	    //measureNum = songDatas.songInfo[songNumber.value].expertMap[0];
+	    measureNum = song.expertMap[0];
 	    NotePlace();
     }
 }

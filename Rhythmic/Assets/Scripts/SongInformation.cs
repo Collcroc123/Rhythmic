@@ -6,14 +6,14 @@ using System.Collections.Generic;
 public class SongInformation : MonoBehaviour
 {
     public SongData song;
-    private ScanSongs manager;
+    private Menu manager;
     public List<GameObject> groupChildren = new List<GameObject>();
     public string groupBanner;
     private bool collapsed = true;
 
     void Awake()
     {
-        manager = GameObject.Find("Manager").GetComponent<ScanSongs>();
+        manager = GameObject.Find("Manager").GetComponent<Menu>();
     }
 
     public void GetInfo()
@@ -27,7 +27,6 @@ public class SongInformation : MonoBehaviour
                 {
                     song.title = ExtractData(line);
                     transform.GetChild(0).GetComponent<Text>().text = song.title;
-                    //print("SONG: "+ song.title);
                 }
 				else if (line.Contains("#SUBTITLE:")) song.subtitle = ExtractData(line);
 				else if (line.Contains("#ARTIST:")) song.artist = ExtractData(line);
@@ -102,7 +101,7 @@ public class SongInformation : MonoBehaviour
 		return line.Substring(dataStart, dataEnd - dataStart);
 	}
 
-    public void Group()
+    public void DisplayGroup()
     {
         for (int i=0; i < groupChildren.Count; i++)
         {
@@ -112,6 +111,12 @@ public class SongInformation : MonoBehaviour
         GetImage(groupBanner);
     }
 
+    public void DisplayInfo()
+    {
+        GetImage(song.banner);
+        manager.DisplayInfo(song);
+    }
+
     public void GetImage(string dir)
     {
         //if (dir == "" || dir == null) dir = song.banner;
@@ -119,14 +124,5 @@ public class SongInformation : MonoBehaviour
         Texture2D tex = new Texture2D(2, 2);
         tex.LoadImage(bytes);
         manager.banner.texture = tex;
-        //if (groupBanner == null) groupBanner = groupChildren[0].GetComponent<SongInformation>().song.directory + "\\" + groupChildren[0].GetComponent<SongInformation>().song.banner;
     }
-
-    public void DisplayInfo()
-	{
-		GetImage(song.banner);
-		manager.artist.text = song.artist;
-		manager.BPM.text = song.displayBPM.ToString();
-		manager.length.text = song.length;
-	}
 }
