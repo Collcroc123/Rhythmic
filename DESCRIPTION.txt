@@ -1,2 +1,0 @@
-A recreation of the game "Rockband Unplugged" on the PSP. Allows you to make custom songs
-using text files.
