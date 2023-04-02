@@ -12,8 +12,10 @@ public class Menu : MonoBehaviour
     public RawImage banner;
     public Text artist, BPM, length;
     public MusicData music;
-
+    public AudioSource source;
     private GameObject currentGroup;
+    
+    private bool fading;
 
     public void CreateList()
     {
@@ -32,9 +34,10 @@ public class Menu : MonoBehaviour
         var newGroup = Instantiate(groupPrefab);
         newGroup.transform.SetParent(scrollList.transform, false);
         newGroup.transform.GetChild(0).GetComponent<Text>().text = groupTitle;
-        currentGroup = newGroup;
         var temp = System.IO.Directory.GetFiles(music.directory+groupTitle, "*.png");
         if (temp.Length > 0) newGroup.GetComponent<SongInformation>().groupBanner = temp[0];
+        newGroup.GetComponent<Button>().onClick.AddListener(source.Stop);
+        currentGroup = newGroup;
         //print("GROUP: "+ groupTitle);
     }
 
@@ -50,20 +53,58 @@ public class Menu : MonoBehaviour
 
     public void DisplayInfo(SongData song)
 	{
+        music.currentSong = song;
 		artist.text = song.artist;
 		BPM.text = song.displayBPM.ToString();
-		length.text = song.length;
-        PlaySnippet();
+        StartCoroutine(PlaySnippet(song));
 	}
 
-    public void PlaySnippet()
+    IEnumerator PlaySnippet(SongData song)
     {
+        source.clip = null;
+        source.Stop();
+        yield return new WaitForSeconds(0.5f);
+        string dir = song.directory.Replace(@"C:\Users\Collin\Documents\Repos\Rhythmic\Rhythmic\Assets\Resources\", "")+"\\"+song.music;
+        AudioClip clip = (AudioClip)Resources.Load(dir, typeof(AudioClip));
+        source.clip = clip;
+        source.time = song.sampleStart;
+        length.text = source.clip.length.ToString();
+        source.Play();
+        source.SetScheduledEndTime(AudioSettings.dspTime+(song.sampleLength));
+    }
 
+    void Update()
+    {
+        if (source.isPlaying && !fading && source.time >= music.currentSong.sampleStart+music.currentSong.sampleLength-1f)
+        {
+            fading = true;
+            StartCoroutine(FadeOut());
+        }
+    }
+
+    IEnumerator FadeOut()
+    {
+        float startVolume = source.volume;
+        while (source.volume > 0f)
+        {
+            source.volume -= startVolume * Time.deltaTime / 1f;
+            yield return null;
+        }
+        source.Stop();
+        source.volume = startVolume;
+        source.time = music.currentSong.sampleStart;
+        source.Play();
+        source.SetScheduledEndTime(AudioSettings.dspTime+(music.currentSong.sampleLength));
+        fading = false;
     }
 
     public void Select()
     {
-        StartCoroutine(LoadGame());
+        if (music.currentSong != null)
+        {
+            //StartCoroutine(LoadGame());
+            SceneManager.LoadScene("Level");
+        }
     }
 
     IEnumerator LoadGame()

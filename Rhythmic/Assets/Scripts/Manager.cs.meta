@@ -3,7 +3,14 @@ guid: 83f1b84d3968e7946987815c6ab50746
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - music: {instanceID: 0}
+  - hitCount: {instanceID: 0}
+  - missCount: {instanceID: 0}
+  - score: {instanceID: 0}
+  - combText: {instanceID: 0}
+  - rankText: {instanceID: 0}
+  - health: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

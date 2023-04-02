@@ -20,8 +20,8 @@ public class SongData : ScriptableObject
 	public float displayBPM; // BPM displayed in menu
 	public List<float> bpms = new List<float>();
 	public List<float> stops = new List<float>();
-	public string length; // How long the song is
-	public string rank;
+
+	public List<List<int>> expertMap = new List<List<int>>();
 
     //public string titleTranslit;
 	//else if (value.Contains("#TITLETRANSLIT:")) song.titleTranslit = ExtractData(value);
@@ -42,14 +42,4 @@ public class SongData : ScriptableObject
 	//public List<float> keySounds = new List<float>();
 	//else if (value.Contains("#KEYSOUNDS:")) song.keySounds = ExtractData(value);
 	//ATTACKS, JACKET, FGCHANGES, LASTBEATHINT, NITGVERSION
-
-	public List<int> expertMap = new List<int>();
-
-    public void Clear()
-    {
-        for (int i = 0; i < expertMap.Count; i++)
-        {
-            expertMap[i] = 0;
-        }
-    }
 }

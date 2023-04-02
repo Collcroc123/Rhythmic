@@ -2,14 +2,15 @@
 
 public class NoteHit : MonoBehaviour
 {
-	public Manager manager; //Manager script
-	public string button; //What key to press
-	//public GameObject death; //Death screen
-    private GameObject currentNote; //Currently selected note
-    private float noteDistance;
-    private Animator flash;
-    public bool autoPlay;
-    public AudioSource click;
+	public Manager manager; // Manager script
+	public string button; // What key to press
+    public bool autoPlay; // Note plays itself
+    public AudioSource click; // Click sound
+    private Animator flash; // Animation that plays when you press key
+	//public GameObject death; // Death screen
+
+	private GameObject note; // Current note in collider
+    private float noteDistance; // Distance of note from collider center
 
     private void Start()
     {
@@ -18,58 +19,27 @@ public class NoteHit : MonoBehaviour
 
     void Update ()
     {
-	    if (autoPlay)
+		if (autoPlay)
 	    {
-		    if (currentNote != null && currentNote.tag == "NOTE")
+		    if (note != null && note.tag == "NOTE")
 		    {
-			    if (noteDistance <= 0.00001)
+			    if (noteDistance <= 0.0001)
 			    {
-				    manager.totalScore += manager.perfectPoints;
-				    manager.rankText.text = "PERFECT!";
-				    click.Play();
-				    Destroy(currentNote);
-				    manager.totalHits++;
-				    manager.combo++; 
-				    manager.healthVal += 1f;
+					click.Play();
+					manager.Note(note, "PERFECT!");
 			    }
 		    }
 	    }
 	    else if (Input.GetKeyDown(button) && !autoPlay)
 	    {
 		    flash.SetTrigger("ButtonPress");
-		    if (currentNote != null && currentNote.tag == "NOTE")
+		    if (note != null && note.tag == "NOTE")
 		    {
-			    if (noteDistance <= 0.75)
-			    { 
-				    manager.totalScore += manager.perfectPoints;
-				    manager.rankText.text = "PERFECT!";
-			    }
-			    else if (noteDistance > 0.75 && noteDistance <= 1)
-			    {
-				    manager.totalScore += manager.greatPoints;
-				    manager.rankText.text = "GREAT!";
-			    }
-			    else if (noteDistance > 1 && noteDistance <= 1.2)
-			    {
-				    manager.totalScore += manager.goodPoints;
-				    manager.rankText.text = "GOOD";
-			    }
-			    else if (noteDistance > 1.2 && noteDistance <= 1.5)
-			    {
-				    manager.totalScore += manager.okayPoints;
-				    manager.rankText.text = "OKAY";
-				    manager.combo = 0;
-			    }
-			    else if (noteDistance > 1.5)
-			    {
-				    manager.totalScore += manager.poorPoints;
-				    manager.rankText.text = "POOR";
-				    manager.combo = 0;
-			    }
-			    Destroy(currentNote);
-			    manager.totalHits++;
-			    manager.combo++; 
-			    manager.healthVal += 1f;
+				if (noteDistance > 1.5) manager.Note(note, "POOR");
+			    else if (noteDistance > 1.2) manager.Note(note, "OKAY");
+				else if (noteDistance > 1) manager.Note(note, "GOOD");
+			    else if (noteDistance > 0.75) manager.Note(note, "GREAT!");
+			    else manager.Note(note, "PERFECT!"); //if (noteDistance <= 0.75)
 		    }
 	    }
 	    if (manager.healthVal <= 0)
@@ -78,11 +48,12 @@ public class NoteHit : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "NOTE")
         {
-            currentNote = other.gameObject;
+            note = other.gameObject;
+			noteDistance = Vector2.Distance(other.transform.position, transform.position);
         }
     }
 
@@ -90,12 +61,14 @@ public class NoteHit : MonoBehaviour
     {
 	    if (other.gameObject.tag == "NOTE")
 	    {
+			note = other.gameObject;
 		    noteDistance = Vector2.Distance(other.transform.position, transform.position);
 	    }
     }
 
-    void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D other)
     {
-	    currentNote = null;
-    }
+		manager.Note(note, "MISS");
+		note = null;
+    }	
 }

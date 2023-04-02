@@ -7,8 +7,9 @@ public class SongInformation : MonoBehaviour
 {
     public SongData song;
     private Menu manager;
-    public List<GameObject> groupChildren = new List<GameObject>();
-    public string groupBanner;
+
+    [HideInInspector] public List<GameObject> groupChildren = new List<GameObject>();
+    [HideInInspector] public string groupBanner;
     private bool collapsed = true;
 
     void Awake()
@@ -55,10 +56,19 @@ public class SongInformation : MonoBehaviour
 	            	}*/
 			    }
 				else if (line.Contains("#CDTITLE:")) song.cdtitle = ExtractData(line);
-				else if (line.Contains("#MUSIC:")) song.music = ExtractData(line);
-	        	else if (line.Contains("#OFFSET:")) song.offset = float.Parse(ExtractData(line)); //, CultureInfo.InvariantCulture.NumberFormat
-	        	else if (line.Contains("#SAMPLESTART:")) song.sampleStart = float.Parse(ExtractData(line)); //, CultureInfo.InvariantCulture.NumberFormat
-	        	else if (line.Contains("#SAMPLELENGTH:")) song.sampleLength = float.Parse(ExtractData(line)); //, CultureInfo.InvariantCulture.NumberFormat
+				else if (line.Contains("#MUSIC:")) song.music = ExtractData(line).Replace(".ogg", "");
+	        	else if (line.Contains("#OFFSET:")) song.offset = float.Parse(ExtractData(line));
+	        	else if (line.Contains("#SAMPLESTART:")) song.sampleStart = float.Parse(ExtractData(line)); 
+	        	else if (line.Contains("#SAMPLELENGTH:")) 
+                {
+                    var num = float.Parse(ExtractData(line));
+                    if (num < 1f) 
+                    { // Ensures that if both start & length are 0, start 30s in for 20s long
+                        if (song.sampleStart < 1f) song.sampleStart = 30f;
+                        num = 20f;
+                    }
+                    else song.sampleLength = num;
+                }
 	        	else if (line.Contains("#DISPLAYBPM:")) 
                 {
                     //if (line.Contains())

@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class NoteMove : MonoBehaviour
 {
-    //public SongInformation songInfo;
+    public MusicData music;
+    public Manager manager;
     private float songBpm;
     private float currentBps;
     private bool ready;
     public AudioSource source;
     private float speed = 10;
-    public SongData song;
 
     void Start()
     {
@@ -18,8 +18,9 @@ public class NoteMove : MonoBehaviour
 
     void Update()
     {
-        if (ready)
+        if (ready && manager.ready)
         {
+            if (!manager.source.isPlaying) manager.source.Play();
             transform.position -= new Vector3(0f, currentBps * Time.deltaTime, 0f);
         }
     }
@@ -28,14 +29,14 @@ public class NoteMove : MonoBehaviour
     {
         yield return new WaitForSeconds(1.0f);
         print(songBpm);
-        currentBps = song.displayBPM / 60.0f;
+        currentBps = music.currentSong.displayBPM / 60.0f;
         currentBps *= speed;
         source.Play();
-        yield return new WaitForSeconds(song.offset);
+        yield return new WaitForSeconds(music.currentSong.offset);
         ready = true;
     }
-
-    void OnBecameInvisible()
+    
+    /*void OnBecameInvisible()
     {
         Debug.Log("I'm not visible anymore");
     }
@@ -43,5 +44,5 @@ public class NoteMove : MonoBehaviour
     void OnBecameVisible()
     {
         Debug.Log("Hey! I'm visible!");
-    }
+    }*/
 }

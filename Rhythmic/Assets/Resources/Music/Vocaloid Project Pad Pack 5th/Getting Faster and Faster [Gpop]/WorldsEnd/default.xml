@@ -1,0 +1,75 @@
+<ActorFrame
+	Condition="GAMESTATE:PlayerUsingBothSides() == false"
+	InitCommand="%function(self)
+		m_bl = 60/94
+	end"
+> 
+	<children>
+
+		<!-- These FGchanges will are for the edit charts' "invisible notes" gimmick, inspired by the Chuunithm WORLD'S END chart -->
+		<Layer
+			Type="Quad"
+			InitCommand="hidden,1"
+			OnCommand="sleep,1000"
+		/>
+		<Layer
+			Type="Quad"
+			InitCommand="hidden,1"
+			OnCommand="%function(self)
+				self:queuecommand('Update');
+
+				curmod = 1;
+				--{beat,mod,player}
+				mods = {}
+				
+				if GAMESTATE:IsPlayerEnabled(0) and (GAMESTATE:GetCurrentSteps(0):GetDifficulty() == 5 or GAMESTATE:GetCurrentSteps(0):GetDifficulty() == 6 or GAMESTATE:GetCurrentSteps(0):GetDifficulty() == 7) then
+					
+					if GAMESTATE:IsPlayerEnabled(1) and (GAMESTATE:GetCurrentSteps(1):GetDifficulty() == 5 or GAMESTATE:GetCurrentSteps(1):GetDifficulty() == 6 or GAMESTATE:GetCurrentSteps(1):GetDifficulty() == 7) then
+					
+						table.insert(mods,{18,'*1 100% stealth',1})
+						table.insert(mods,{18,'*1 100% stealth',2})
+						table.insert(mods,{194,'*1 no stealth',1})
+						table.insert(mods,{194,'*1 no stealth',2})
+						table.insert(mods,{246,'*1 100% stealth',1})
+						table.insert(mods,{246,'*1 100% stealth',2})
+					
+					else
+						table.insert(mods,{18,'*1 100% stealth',1})
+						table.insert(mods,{194,'*1 no stealth',1})
+						table.insert(mods,{246,'*1 100% stealth',1})
+						
+					end
+				
+				elseif GAMESTATE:IsPlayerEnabled(1) and (GAMESTATE:GetCurrentSteps(1):GetDifficulty() == 5 or GAMESTATE:GetCurrentSteps(1):GetDifficulty() == 6 or GAMESTATE:GetCurrentSteps(1):GetDifficulty() == 7) then
+				
+					table.insert(mods,{18,'*1 100% stealth',2})
+					table.insert(mods,{194,'*1 no stealth',2})
+					table.insert(mods,{246,'*1 100% stealth',2})
+					
+				end
+				
+			end"
+			
+			UpdateCommand="%function(self)
+
+				if curmod<=table.getn(mods) and GAMESTATE:GetSongBeat()>=mods[curmod][1] then
+					if mods[curmod] ~= nil then
+						if table.getn(mods[curmod]) == 3 then
+							GAMESTATE:ApplyGameCommand('mod,'..mods[curmod][2],mods[curmod][3]);
+						else
+							GAMESTATE:ApplyGameCommand('mod,'..mods[curmod][2]);
+						end
+						curmod = curmod+1;
+					end
+				end
+				
+				self:queuecommand('Update2');
+			end"
+			
+			Update2Command="%function(self)
+				self:sleep(0.0166666666);
+				self:queuecommand('Update');
+			end"
+		/>
+	</children>
+</ActorFrame>

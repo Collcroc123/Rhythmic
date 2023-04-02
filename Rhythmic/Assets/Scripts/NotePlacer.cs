@@ -1,8 +1,10 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class NotePlacer : MonoBehaviour
 {
+	public MusicData music;
     public GameObject prefabGreen; //Green Note
     public GameObject prefabBlue; //Blue Note
     public GameObject prefabRed; //Red Note
@@ -11,12 +13,14 @@ public class NotePlacer : MonoBehaviour
     private float nextNote, nextRow, nextArrow; //Space Between Rows, Vertical Loc, Horizontal Loc
     private int currentMeasure, measureNum = 4; //Point in Measure Array, Number of Lines in Measure
     private bool placing;
-    public SongData song;
 
     void Start()
 	{
-		nextNote = 1500f/measureNum;
-		StartCoroutine(WaitSong());
+		Scan();
+		//nextNote = 1500f/measureNum;
+		//measureNum = music.currentSong.expertMap[0];
+		//NotePlace();
+
 		/*READING .sm FILES!
 		1's = Normal note
 		2's = Hold Button
@@ -36,10 +40,10 @@ public class NotePlacer : MonoBehaviour
 		; = End of the Song (difficulty)
 		*/
 	}
-
+	/*
     void NotePlace()
 	{
-        string[] lines = System.IO.File.ReadAllLines(song.fileName);
+        string[] lines = System.IO.File.ReadAllLines(music.currentSong.fileName);
         foreach (string line in lines)
 		{
 			if (line.Contains("#NOTES:") && !placing)
@@ -92,7 +96,7 @@ public class NotePlacer : MonoBehaviour
 				else if (line == ",")
 				{
 					currentMeasure++;
-					measureNum = song.expertMap[currentMeasure];
+					measureNum = music.currentSong.expertMap[currentMeasure];
 					print(measureNum);
 					//A = B/C, B = measureNum * distance moved for 1 full note
 					nextNote = 1500f/measureNum;
@@ -104,11 +108,42 @@ public class NotePlacer : MonoBehaviour
 			}
 		}
 	}
-    
+    //StartCoroutine(WaitSong());
     private IEnumerator WaitSong()
     {
 	    yield return new WaitForSeconds(1.0f);
-	    measureNum = song.expertMap[0];
+	    measureNum = music.currentSong.expertMap[0];
 	    NotePlace();
-    }
+    }*/
+
+	void Scan()
+	{
+		//currentMeasure = 0;
+		List<int> notes = new List<int>();
+		string[] lines = System.IO.File.ReadAllLines(music.currentSong.fileName);
+        foreach (string line in lines)
+		{
+			if (line.Contains("#NOTES:")) placing = true;
+			else if (placing)
+			{
+				if (line == "" || line == null) continue;
+				if (line.Contains(","))
+				{
+					music.currentSong.expertMap.Add(notes); //[currentMeasure] = notes;
+					notes.Clear();
+					//currentMeasure++;
+					continue;
+				}
+				if (line.Length == 4)
+				{
+					notes.Add(int.Parse(line));
+					foreach (char note in line)
+					{
+						//
+					}
+				}
+				if (line.Contains(";")) return;
+			}
+		}
+	}
 }
