@@ -5,11 +5,10 @@ public class NoteMove : MonoBehaviour
 {
     public MusicData music;
     public Manager manager;
-    private float songBpm;
     private float currentBps;
+    public float speed = 8;
+
     private bool ready;
-    public AudioSource source;
-    private float speed = 10;
 
     void Start()
     {
@@ -27,22 +26,8 @@ public class NoteMove : MonoBehaviour
     
     private IEnumerator WaitMove()
     {
-        yield return new WaitForSeconds(1.0f);
-        print(songBpm);
-        currentBps = music.currentSong.displayBPM / 60.0f;
-        currentBps *= speed;
-        source.Play();
+        currentBps = (music.currentSong.displayBPM / 60.0f) * speed;
         yield return new WaitForSeconds(music.currentSong.offset);
         ready = true;
     }
-    
-    /*void OnBecameInvisible()
-    {
-        Debug.Log("I'm not visible anymore");
-    }
-
-    void OnBecameVisible()
-    {
-        Debug.Log("Hey! I'm visible!");
-    }*/
 }

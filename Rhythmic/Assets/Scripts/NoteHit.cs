@@ -23,9 +23,10 @@ public class NoteHit : MonoBehaviour
 	    {
 		    if (note != null && note.tag == "NOTE")
 		    {
-			    if (noteDistance <= 0.0001)
+			    if (noteDistance <= 0.75)
 			    {
 					click.Play();
+					flash.SetTrigger("ButtonPress");
 					manager.Note(note, "PERFECT!");
 			    }
 		    }
@@ -68,7 +69,7 @@ public class NoteHit : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-		manager.Note(note, "MISS");
+		//manager.Note(note, "MISS");
 		note = null;
     }	
 }

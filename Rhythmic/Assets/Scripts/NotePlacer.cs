@@ -1,125 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class NotePlacer : MonoBehaviour
 {
 	public MusicData music;
-    public GameObject prefabGreen; //Green Note
-    public GameObject prefabBlue; //Blue Note
-    public GameObject prefabRed; //Red Note
-    public GameObject prefabPurple; //Purple Note
-    private GameObject newNote; //Placeholder Note
-    private float nextNote, nextRow, nextArrow; //Space Between Rows, Vertical Loc, Horizontal Loc
-    private int currentMeasure, measureNum = 4; //Point in Measure Array, Number of Lines in Measure
-    private bool placing;
+    public GameObject arrowPrefab;
+	public float measureDistance = 3000f;
+    private float currentNote = 1, currentRow = -29000, nextRow;
 
     void Start()
 	{
+		//music.currentSong.chart.measure.Clear();
 		Scan();
-		//nextNote = 1500f/measureNum;
-		//measureNum = music.currentSong.expertMap[0];
-		//NotePlace();
-
-		/*READING .sm FILES!
-		1's = Normal note
-		2's = Hold Button
-		3's = End of Hold / Mash
-		4's = Mash
-		M's = Mines (ignore)
-		, represents a measure
-		number of lines between , represents time signature for that measure
-		F = Full, H = Half, T = Third, Q = Quarter, E = Eighth, etc.
-		4 lines = F x4
-		8 lines = F,H x4
-		12 lines = F, 
-		16 lines = F,Q,H,Q x4
-		24 lines = F,T,T,H,T,T x4
-		32 lines = F,E,Q,E,H,E,Q,E x4
-		48 lines = F,T,T,Q,T,T,H,T,T,Q,T,T x4
-		; = End of the Song (difficulty)
-		*/
+		//Place();
 	}
-	/*
-    void NotePlace()
-	{
-        string[] lines = System.IO.File.ReadAllLines(music.currentSong.fileName);
-        foreach (string line in lines)
-		{
-			if (line.Contains("#NOTES:") && !placing)
-			{
-				placing = true;
-			}
-			
-			if (placing)
-			{
-				if (line.Length == 4)
-				{
-					foreach (char num in line)
-					{
-						nextArrow++;
-						if (num == '1' || num == '2' || num == '4')
-						{
-							if (nextArrow == 1)
-							{
-								newNote = Instantiate(prefabGreen, new Vector3(-210, nextRow, 0), Quaternion.Euler(0, 0, 90));
-								newNote.transform.SetParent(gameObject.transform, false);
-								//nextArrow++;
-							}
-							else if (nextArrow == 2)
-							{
-								newNote = Instantiate(prefabBlue, new Vector3(-70, nextRow, 0), Quaternion.Euler(0, 0, 180));
-								newNote.transform.SetParent(gameObject.transform, false);
-								//nextArrow++;
-							}
-							else if (nextArrow == 3)
-							{
-								newNote = Instantiate(prefabRed, new Vector3(70, nextRow, 0), Quaternion.Euler(0, 0, 0));
-								newNote.transform.SetParent(gameObject.transform, false);
-								//nextArrow++;
-							}
-							else if (nextArrow == 4)
-							{
-								newNote = Instantiate(prefabPurple, new Vector3(210, nextRow, 0), Quaternion.Euler(0, 0, -90));
-								newNote.transform.SetParent(gameObject.transform, false);
-								//nextArrow++;
-								nextArrow = 0;
-							}
-						}
-						else if ((num == '0' || num == '3' || num == 'M') && nextArrow == 4)
-						{
-							nextArrow = 0;
-						}
-					}
-					nextRow += nextNote;
-				}
-				else if (line == ",")
-				{
-					currentMeasure++;
-					measureNum = music.currentSong.expertMap[currentMeasure];
-					print(measureNum);
-					//A = B/C, B = measureNum * distance moved for 1 full note
-					nextNote = 1500f/measureNum;
-				}
-				else if (line == ";")
-				{
-					return;
-				}
-			}
-		}
-	}
-    //StartCoroutine(WaitSong());
-    private IEnumerator WaitSong()
-    {
-	    yield return new WaitForSeconds(1.0f);
-	    measureNum = music.currentSong.expertMap[0];
-	    NotePlace();
-    }*/
 
 	void Scan()
 	{
-		//currentMeasure = 0;
-		List<int> notes = new List<int>();
+		bool placing = false;
+		int currentMeasure = 0;
+		Measure first = new Measure();
+		music.currentSong.chart.measure.Add(first);
 		string[] lines = System.IO.File.ReadAllLines(music.currentSong.fileName);
         foreach (string line in lines)
 		{
@@ -127,23 +30,71 @@ public class NotePlacer : MonoBehaviour
 			else if (placing)
 			{
 				if (line == "" || line == null) continue;
-				if (line.Contains(","))
-				{
-					music.currentSong.expertMap.Add(notes); //[currentMeasure] = notes;
-					notes.Clear();
-					//currentMeasure++;
+				if (line.StartsWith(";")) break; // End of the Song (difficulty)
+				if (line.StartsWith(","))
+				{ // End of previous measure / start of next measure
+					Measure temp = new Measure();
+					music.currentSong.chart.measure.Add(temp);
+					currentMeasure++;
 					continue;
 				}
-				if (line.Length == 4)
-				{
-					notes.Add(int.Parse(line));
-					foreach (char note in line)
-					{
-						//
-					}
-				}
-				if (line.Contains(";")) return;
+				else if (line.Length == 4) music.currentSong.chart.measure[currentMeasure].row.Add(line);
 			}
 		}
+		Place();
+	}
+
+	void Place()
+	{
+		foreach (Measure measure in music.currentSong.chart.measure)
+		{
+			/*switch (measure.row.Count)
+        	{ // F = Full, H = Half, T = Third, Q = Quarter, E = Eighth, etc.
+        	case 4: // 4 lines = F x4
+        	    break;
+        	case 8: // 8 lines = F,H x4
+    		    break;
+        	case 12: // 12 lines = F,T,T x4
+        	    break;
+    		case 16: // 16 lines = F,Q,H,Q x4
+    		    break;
+    		case 24: // 24 lines = F,T,T,H,T,T x4
+        	    break;
+        	case 32: // 32 lines = F,E,Q,E,H,E,Q,E x4
+        	    break;
+			case 48: // 48 lines = F,T,T,Q,T,T,H,T,T,Q,T,T x4
+				break;
+        	default:
+        	    print ("ERROR! UNSUPPORTED MEASURE SIZE: " + measure.row.Count);
+        	    break;
+        	}*/
+
+			nextRow = measureDistance/measure.row.Count;
+			foreach (string row in measure.row)
+			{
+				foreach (char note in row)
+				{
+					if (note == '1' || note == '2' || note == '4')
+					{
+						if (currentNote == 1) CreateNote(note, -210, -90, new Color(1f, 0f, 0f, 1f));
+						else if (currentNote == 2) CreateNote(note, -70, 0, new Color(0f, 1f, 0f, 1f));
+						else if (currentNote == 3) CreateNote(note, 70, 180, new Color(0f, 0f, 1f, 1f));
+						else if (currentNote == 4) CreateNote(note, 210, 90, new Color(1f, 1f, 0f, 1f));
+					}
+					else if ((note == '0' || note == '3' || note == 'M') && currentNote == 4) currentNote = 0;
+					currentNote++; // 1-2-3-4
+				}
+				currentRow += nextRow;
+			}
+		}
+	}
+
+	void CreateNote(char noteType, float hPos, float rot, Color col)
+	{
+		print("PLACED NOTE " + currentNote);
+		GameObject newNote = Instantiate(arrowPrefab, new Vector3(hPos, currentRow, 0), Quaternion.Euler(0, 0, rot));
+		newNote.transform.SetParent(gameObject.transform, false);
+		newNote.GetComponent<Image>().color = col;
+		if (currentNote == 4) currentNote = 0;
 	}
 }

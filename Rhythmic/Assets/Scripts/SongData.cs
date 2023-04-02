@@ -21,7 +21,8 @@ public class SongData : ScriptableObject
 	public List<float> bpms = new List<float>();
 	public List<float> stops = new List<float>();
 
-	public List<List<int>> expertMap = new List<List<int>>();
+	//public List<List<int>> expertMap = new List<List<int>>();
+	public Chart chart = new Chart();
 
     //public string titleTranslit;
 	//else if (value.Contains("#TITLETRANSLIT:")) song.titleTranslit = ExtractData(value);
@@ -42,4 +43,16 @@ public class SongData : ScriptableObject
 	//public List<float> keySounds = new List<float>();
 	//else if (value.Contains("#KEYSOUNDS:")) song.keySounds = ExtractData(value);
 	//ATTACKS, JACKET, FGCHANGES, LASTBEATHINT, NITGVERSION
+}
+
+[System.Serializable]
+public class Measure
+{
+	public List<string> row = new List<string>();
+}
+
+[System.Serializable]
+public class Chart
+{
+	public List<Measure> measure = new List<Measure>();
 }

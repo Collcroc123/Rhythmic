@@ -13,6 +13,7 @@ public class Manager : MonoBehaviour
     public Text rankText; // Displays hit ranking
     public Slider health;
     public Slider timeBar;
+    public RawImage background;
 
     public int perfectPoints = 10050;
     public int greatPoints = 7540;
@@ -21,10 +22,10 @@ public class Manager : MonoBehaviour
     public int poorPoints = 1710;
 
     public float healthVal = 50;
-    public int totalHits = 0;
-    public int totalMisses = 0;
+    public int totalHits;
+    public int totalMisses;
     public int totalScore;
-    public int combo = 0;
+    public int combo;
     public bool ready;
 
     void Awake()
@@ -51,6 +52,15 @@ public class Manager : MonoBehaviour
         source.clip = clip;
         timeBar.maxValue = source.clip.length;
         ready = true;
+        GetBackground(music.currentSong.background);
+    }
+
+    public void GetBackground(string dir)
+    {
+        var bytes = System.IO.File.ReadAllBytes(dir);
+        Texture2D tex = new Texture2D(2, 2);
+        tex.LoadImage(bytes);
+        background.texture = tex;
     }
 
     public void Note(GameObject note, string rating)

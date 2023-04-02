@@ -129,7 +129,6 @@ public class SongInformation : MonoBehaviour
 
     public void GetImage(string dir)
     {
-        //if (dir == "" || dir == null) dir = song.banner;
         var bytes = System.IO.File.ReadAllBytes(dir);
         Texture2D tex = new Texture2D(2, 2);
         tex.LoadImage(bytes);

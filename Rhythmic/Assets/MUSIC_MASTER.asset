@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentSong: {fileID: 0}
   directory: C:\Users\Collin\Documents\Repos\Rhythmic\Rhythmic\Assets\Resources\Music\
+  scanned: 0

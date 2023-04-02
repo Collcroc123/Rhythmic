@@ -68,7 +68,9 @@ public class Menu : MonoBehaviour
         AudioClip clip = (AudioClip)Resources.Load(dir, typeof(AudioClip));
         source.clip = clip;
         source.time = song.sampleStart;
-        length.text = source.clip.length.ToString();
+        float minutes = Mathf.FloorToInt(source.clip.length / 60);  
+        float seconds = Mathf.FloorToInt(source.clip.length % 60);
+        length.text = string.Format("{0}:{1:00}", minutes, seconds);
         source.Play();
         source.SetScheduledEndTime(AudioSettings.dspTime+(song.sampleLength));
     }
